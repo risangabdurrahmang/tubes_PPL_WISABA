@@ -12,7 +12,7 @@
     $id_wisata = $conn->real_escape_string($_GET['id_wisata']);
 
     // menampilkan data wisata berdasarkan id
-    $query2 = mysqli_query($conn, "SELECT * FROM tabel_objek_wisata WHERE id_wisata = '$id_wisata'");
+    $query = mysqli_query($conn, "SELECT * FROM tabel_objek_wisata WHERE id_wisata = '$id_wisata'");
 ?>
 
 <!DOCTYPE html>
@@ -58,13 +58,11 @@
       </div>
     </div>
   </nav>
-
+<?php
+  while($rows = mysqli_fetch_array($query)) {
+?>
   <main>
-    <?php
-      while($rows = mysqli_fetch_array($query2)) {
-    ?>
-      <div id='panorama'><?php echo $rows['gambar_360']; ?></div>
-    <?php } ?>
+      <div id='panorama'></div>
   </main>
 
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -74,11 +72,12 @@
   <script>
     pannellum.viewer('panorama', {
       type: 'equirectangular',
-      panorama: 'img/Panorama Wana Wisata.jpeg',
+      panorama: 'img/<?php echo $rows['gambar_360']; ?>',
       autoLoad: true,
       autoRotate: -2,
     });
   </script>
+<?php } ?>
 </body>
 
 </html>

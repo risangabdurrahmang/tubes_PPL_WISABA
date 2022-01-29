@@ -29,7 +29,6 @@
           <td><?= $row['nama_admin']; ?></td>
           <td><?= $row['password']; ?></td>
           <td>
-            <a href="edit_admin.php?id_admin=<?= $row['id_admin']; ?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
             <a onclick="return confirm('Apakah yakin menghapus data ?')" href="hapus_admin.php?id_admin=<?= $row['id_admin']; ?>" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a>
           </td>
         </tr>              
